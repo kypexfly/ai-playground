@@ -1,6 +1,15 @@
-import { Github, Loader2, LucideProps, Settings } from "lucide-react";
+import {
+  ChevronDown,
+  Github,
+  LayoutGrid,
+  Loader2,
+  LucideProps,
+  Settings,
+} from "lucide-react";
 
 export const Icons = {
+  layout: LayoutGrid,
+  arrowDown: ChevronDown,
   loader: Loader2,
   settings: Settings,
   github: Github,

@@ -3,25 +3,18 @@ import Link from "next/link";
 import { Icons } from "./icons";
 import { NavLink } from "./nav-link";
 import { Button } from "./ui/button";
+import AppsMenu from "./apps-menu";
 
 const routes = [
   {
     href: "/",
     label: "Home",
   },
-  {
-    href: "/ask",
-    label: "AskGPT",
-  },
-  {
-    href: "/pdf",
-    label: "TalkPDF",
-  },
 ];
 
 const SiteHeader = () => {
   return (
-    <header className="h-16 border-b">
+    <header className="h-16">
       <div className="container flex items-center justify-between px-2 py-4">
         <div className="flex items-center">
           <Link href="/" className="mr-4 flex items-center gap-3 px-3">
@@ -42,6 +35,8 @@ const SiteHeader = () => {
                   <NavLink href={route.href}>{route.label}</NavLink>
                 </li>
               ))}
+
+              <AppsMenu />
             </ul>
           </nav>
         </div>
