@@ -2,7 +2,7 @@
 const nextConfig = {
   swcMinify: true,
   typescript: {
-    ignoreBuildErrors: true,
+    ignoreBuildErrors: false,
   },
 };
 

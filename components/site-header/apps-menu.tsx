@@ -36,13 +36,12 @@ const AppsMenu = () => {
 };
 
 const ListItem = React.forwardRef<
-  React.ElementRef<"a">,
-  React.ComponentPropsWithoutRef<"a">
+  React.ElementRef<typeof Link>,
+  React.ComponentPropsWithoutRef<typeof Link>
 >(({ className, title, children, ...props }, ref) => {
   return (
     <li>
       <NavigationMenuLink asChild>
-        {/* TODO: Fix types and remove typescript ignore build error in next.config.js */}
         <Link
           ref={ref}
           className={cn(
