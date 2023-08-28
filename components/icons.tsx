@@ -1,14 +1,20 @@
 import {
   ChevronDown,
   Github,
+  Key,
   LayoutGrid,
+  ListStart,
   Loader2,
   LucideProps,
+  Menu,
   Settings,
 } from "lucide-react";
 
 export const Icons = {
   layout: LayoutGrid,
+  menu: Menu,
+  key: Key,
+  start: ListStart,
   arrowDown: ChevronDown,
   loader: Loader2,
   settings: Settings,

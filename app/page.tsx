@@ -1,3 +1,4 @@
+import { Icons } from "@/components/icons";
 import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
 import {
@@ -15,6 +16,14 @@ export default function Home() {
     <main>
       <section className="space-y-6 pb-8 pt-6 md:pb-12 md:pt-10 lg:py-32">
         <div className="container flex max-w-[64rem] flex-col items-center gap-4 text-center">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/ai-playground.svg"
+            className="animate-spin-slow"
+            width={128}
+            height={128}
+            alt="AI Playground's Logo"
+          />
           <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl">
             <span className="text-primary">AI</span> Playground
           </h1>
@@ -23,7 +32,7 @@ export default function Home() {
           </p>
           <div className="flex flex-wrap justify-center gap-3">
             <a href="#apps" className={buttonVariants({ size: "lg" })}>
-              Let&apos;s start
+              <Icons.start className="mr-2 h-4 w-4" /> Let&apos;s start
             </a>
             <a
               href="https://github.com/kypexfly/ai-playground"
@@ -31,7 +40,7 @@ export default function Home() {
               rel="noopener noreferrer"
               className={buttonVariants({ size: "lg", variant: "secondary" })}
             >
-              GitHub
+              <Icons.github className="mr-2 h-4 w-4" /> GitHub
             </a>
           </div>
         </div>

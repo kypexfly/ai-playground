@@ -1,26 +1,38 @@
-export const apps = [
+type AppType = {
+  href: string;
+  title: string;
+  description: string;
+  tags: string[];
+  new?: boolean;
+  featured?: boolean;
+};
+
+export const apps: AppType[] = [
   {
-    href: "/ask",
-    title: "Ask GPT",
-    description: "Talk to ChatGPT, the OpenAI's chatbot.",
+    href: "/chatbot",
+    title: "ChatGPT",
+    description:
+      "Engage in a conversation with ChatGPT, OpenAI's renowned chatbot.",
     tags: ["OpenAI", "ChatGPT", "LLM"],
   },
   {
-    href: "/pdf",
+    href: "/askpdf",
     title: "Talk PDF",
-    description: "Convert PDF to text and ask questions about the content.",
+    description:
+      "Interact with your PDF documents, ask questions, and extract insights.",
     tags: ["OpenAI", "ChatGPT", "LLM"],
   },
   {
-    href: "/youtube",
-    title: "Chat Youtube",
-    description: "Chat with Youtube Videos",
+    href: "/youtubechat",
+    title: "Chat with Youtube",
+    description:
+      "Interact with YouTube videos through natural language conversations.",
     tags: ["OpenAI", "ChatGPT", "LLM"],
   },
   {
-    href: "/image",
-    title: "Images (thinking on something yet...)",
-    description: "Something related to images...",
-    tags: ["HuggingFace", "Cloudinary"],
+    href: "/imageprocessing",
+    title: "Image Processing AI",
+    description: "Unlock the potential of AI for image-related tasks and more.",
+    tags: ["HuggingFace", "Cloudinary", "Image Processing"],
   },
 ];

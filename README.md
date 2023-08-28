@@ -1,16 +1,25 @@
 ## AI Playground
 
-Personal project in which I build and learn the use of LLM and artificial intelligence models of different types.
+Personal project in which I build and learn the use of LLMs and artificial intelligence models of different types.
 
 > This is a WIP, features are being implemented.
 
 * LangChain
 * OpenAI
 * HuggingFace
-* And more...
+* And more
+
+## Features
+
+* ChatGPT
+* Talk to PDFs
+* Chat Youtube videos
+* Image generation | ?
+
 
 ## Tech Stack
 
 * Next.js 13
 * TypeScript
 * TailwindCSS + Shadcn UI
+* i18n | ?

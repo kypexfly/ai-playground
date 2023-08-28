@@ -8,7 +8,7 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
-} from "./ui/navigation-menu";
+} from "../ui/navigation-menu";
 
 import { cn } from "@/lib/utils";
 import React from "react";
@@ -42,6 +42,7 @@ const ListItem = React.forwardRef<
   return (
     <li>
       <NavigationMenuLink asChild>
+        {/* TODO: Fix types and remove typescript ignore build error in next.config.js */}
         <Link
           ref={ref}
           className={cn(
