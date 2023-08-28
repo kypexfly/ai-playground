@@ -1,4 +1,5 @@
 import {
+  Bot,
   ChevronDown,
   Github,
   Key,
@@ -7,10 +8,15 @@ import {
   Loader2,
   LucideProps,
   Menu,
+  Send,
   Settings,
+  User,
 } from "lucide-react";
 
 export const Icons = {
+  user: User,
+  bot: Bot,
+  send: Send,
   layout: LayoutGrid,
   menu: Menu,
   key: Key,

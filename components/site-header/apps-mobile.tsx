@@ -1,18 +1,17 @@
+import { apps } from "@/config/apps";
 import { siteConfig } from "@/config/site";
 import Link from "next/link";
 import { Icons } from "../icons";
 import { Button, buttonVariants } from "../ui/button";
-import {
-  Sheet,
-  SheetClose,
-  SheetContent,
-  SheetFooter,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "../ui/sheet";
 import { Separator } from "../ui/separator";
-import { apps } from "@/config/apps";
+import {
+    Sheet,
+    SheetClose,
+    SheetContent,
+    SheetHeader,
+    SheetTitle,
+    SheetTrigger
+} from "../ui/sheet";
 
 const AppsMobile = () => {
   return (
