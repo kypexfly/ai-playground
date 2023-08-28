@@ -1,5 +1,6 @@
 "use client";
 
+import { apps } from "@/config/apps";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -9,10 +10,9 @@ import {
   NavigationMenuTrigger,
 } from "./ui/navigation-menu";
 
-import { apps } from "@/app/page";
 import { cn } from "@/lib/utils";
-import Link from "next/link";
 import React from "react";
+import Link from "next/link";
 
 const AppsMenu = () => {
   return (
@@ -59,6 +59,7 @@ const ListItem = React.forwardRef<
     </li>
   );
 });
+
 ListItem.displayName = "ListItem";
 
 export default AppsMenu;
