@@ -93,8 +93,10 @@ const initialState = [
 const Playground = () => {
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [conversation, setConversation] = useState<Response[]>(initialState);
+  const [conversation, setConversation] = useState<Response[]>([]);
+
   const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const endElement = useRef<HTMLDivElement>(null);
 
   useAutosizeTextarea(textareaRef.current, input);
 
@@ -106,12 +108,13 @@ const Playground = () => {
     setIsLoading(true);
 
     try {
+      setInput("");
       const prediction = await predictInput(input);
       setConversation((prev) => [...prev, { role: "ai", message: prediction }]);
-      setInput("");
     } catch (err) {
       console.log(err);
     } finally {
+      endElement.current?.scrollIntoView({ behavior: "smooth" });
       setIsLoading(false);
     }
   };
@@ -124,13 +127,23 @@ const Playground = () => {
 
   return (
     <div className="flex min-h-[calc(100vh-4rem)] flex-col items-center">
-      {conversation.length > 0 && (
-        <Button onClick={() => setConversation([])} size="sm">
-          Clear conversation
+      <div className="sticky top-0 flex w-full justify-center bg-secondary">
+        <Button onClick={() => {}} size="sm" variant="ghost">
+          Settings
         </Button>
-      )}
+        <Button
+          onClick={() => setConversation(initialState)}
+          size="sm"
+          variant="ghost"
+        >
+          Fake
+        </Button>
+        <Button onClick={() => setConversation([])} size="sm" variant="ghost">
+          Clear
+        </Button>
+      </div>
 
-      <div className="max-w-2xl space-y-3 p-4 pb-20 sm:px-4 sm:pt-8">
+      <div className="w-full max-w-2xl space-y-3 p-4 pb-20 sm:px-4 sm:pt-8">
         {!conversation.length && (
           <div className="space-y-4 py-16 text-center">
             <h2 className="text-2xl">Welcome to the AI Chatbox.</h2>
@@ -183,6 +196,8 @@ const Playground = () => {
           </Button>
         </form>
       </div>
+
+      <div ref={endElement}></div>
     </div>
   );
 };
