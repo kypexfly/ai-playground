@@ -1,8 +1,8 @@
-import "@/styles/globals.css";
+import SiteHeader from "@/components/site-header";
+import { siteConfig } from "@/config/site";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import { siteConfig } from "@/config/site";
-import SiteHeader from "@/components/site-header";
+import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
 

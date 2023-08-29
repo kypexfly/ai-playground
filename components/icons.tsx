@@ -8,12 +8,14 @@ import {
   Loader2,
   LucideProps,
   Menu,
+  RefreshCcw,
   Send,
   Settings,
   User,
 } from "lucide-react";
 
 export const Icons = {
+  reload: RefreshCcw,
   user: User,
   bot: Bot,
   send: Send,

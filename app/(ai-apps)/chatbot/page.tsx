@@ -1,4 +1,4 @@
-import Playground from "@/app/(ai-apps)/chatbot/playground";
+import Chat from "@/app/(ai-apps)/chatbot/chat";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 export default function ChatPage() {
   return (
     <main>
-      <Playground />
+      <Chat />
     </main>
   );
 }

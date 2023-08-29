@@ -1,4 +1,3 @@
 export default function YoutubePage() {
-    return <main className="container p-0">Youtube</main>;
-  }
-  
+  return <main className="container p-0">Youtube</main>;
+}

@@ -5,12 +5,12 @@ import { Icons } from "../icons";
 import { Button, buttonVariants } from "../ui/button";
 import { Separator } from "../ui/separator";
 import {
-    Sheet,
-    SheetClose,
-    SheetContent,
-    SheetHeader,
-    SheetTitle,
-    SheetTrigger
+  Sheet,
+  SheetClose,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
 } from "../ui/sheet";
 
 const AppsMobile = () => {
