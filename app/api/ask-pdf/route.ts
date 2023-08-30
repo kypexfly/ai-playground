@@ -1,11 +1,10 @@
-import { loadQARefineChain, VectorDBQAChain } from "langchain/chains";
+import { VectorDBQAChain } from "langchain/chains";
 import { Document } from "langchain/document";
 import { PDFLoader } from "langchain/document_loaders/fs/pdf";
 import { OpenAIEmbeddings } from "langchain/embeddings/openai";
 import { OpenAI } from "langchain/llms/openai";
 import { CharacterTextSplitter } from "langchain/text_splitter";
-import { MemoryVectorStore } from "langchain/vectorstores/memory";
-import { NextResponse } from "next/server";
+import { HNSWLib } from "langchain/vectorstores/hnswlib";
 import path from "path";
 
 export async function POST(req: Request) {
@@ -45,36 +44,17 @@ export async function POST(req: Request) {
 
     const model = new OpenAI({ temperature: 0, modelName: "gpt-3.5-turbo" });
     const embeddings = new OpenAIEmbeddings();
-    const store = await MemoryVectorStore.fromDocuments(
+    const store = await HNSWLib.fromDocuments(
       reducedDocs,
       embeddings,
     );
 
-    /**
-     * Version 1: https://github.com/Hendrixer/fullstack-ai-nextjs/blob/main/util/ai.ts
-     */
-
-    // const chain = loadQARefineChain(model, {
-    //   verbose: true,
-    // });
-    // const relevantDocs = await store.similaritySearch(question, 3);
-    // const res = await chain.call({
-    //   input_documents: relevantDocs,
-    //   question,
-    // });
-
-    /**
-     * Version 2: https://github.com/shawnesquivel/openai-javascript-course/blob/1-start-here/pages/api/solutions/pdf-query-soln.js
-     */
-
     const chain = VectorDBQAChain.fromLLM(model, store, {
-      // k: 3,
-      returnSourceDocuments: false,
-      // verbose: true,
+      k: 5,
+      returnSourceDocuments: true,
     });
+    
     const res = await chain.call({ query: question });
-
-    // console.log(chain);
     console.log(res);
 
     return new Response("OK");

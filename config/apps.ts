@@ -16,23 +16,23 @@ export const apps: AppType[] = [
     tags: ["OpenAI", "ChatGPT", "LLM"],
   },
   {
-    href: "/askpdf",
-    title: "Talk PDF",
+    href: "/ask-pdf",
+    title: "Ask PDF",
     description:
       "Interact with your PDF documents, ask questions, and extract insights.",
     tags: ["OpenAI", "ChatGPT", "LLM"],
   },
   {
-    href: "/youtubechat",
+    href: "/chat-youtube",
     title: "Chat with Youtube",
     description:
       "Interact with YouTube videos through natural language conversations.",
     tags: ["OpenAI", "ChatGPT", "LLM"],
   },
   {
-    href: "/imageprocessing",
-    title: "Image Processing AI",
-    description: "Unlock the potential of AI for image-related tasks and more.",
-    tags: ["HuggingFace", "Cloudinary", "Image Processing"],
+    href: "/image-generator",
+    title: "Image Generator AI",
+    description: "Create stunning images with text.",
+    tags: ["DALL-E", "HuggingFace", "Cloudinary", "Image Processing"],
   },
 ];

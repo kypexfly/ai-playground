@@ -23,3 +23,9 @@ Personal project in which I build and learn the use of LLMs and artificial intel
 * TypeScript
 * TailwindCSS + Shadcn UI
 * i18n | ?
+
+## Inspiration
+
+* https://github.com/Hendrixer/fullstack-ai-nextjs
+* https://github.com/krasun/damngood.tools
+* https://github.com/shawnesquivel/openai-javascript-course/
