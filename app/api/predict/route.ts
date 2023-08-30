@@ -8,9 +8,14 @@ export async function POST(req: Request) {
 
     const { input } = InputValidator.parse(body);
 
+    // Default model: text-davinci-003
+    // gpt-3.5-turbo is 10 times cheaper than default model.
     const llm = new OpenAI({
       temperature: 0,
+      modelName: "gpt-3.5-turbo",
     });
+
+    console.log(llm);
 
     const result = await llm.predict(input);
 
