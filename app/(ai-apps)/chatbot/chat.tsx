@@ -134,7 +134,7 @@ const Chat = () => {
             className="p-2"
             aria-label="Send"
           >
-            <Icons.send width={20} height={20} />
+            <Icons.send width={20} height={20} aria-label="Send" />
           </Button>
         </form>
       </div>
