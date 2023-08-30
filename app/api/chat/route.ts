@@ -1,7 +1,12 @@
 import { OpenAIStream, StreamingTextResponse } from "ai";
-import { OpenAIApi } from "openai-edge";
+import { Configuration, OpenAIApi } from "openai-edge";
+import { env } from "@/config/env";
 
-const openai = new OpenAIApi();
+const config = new Configuration({
+  apiKey: env.OPENAI_API_KEY,
+});
+
+const openai = new OpenAIApi(config);
 
 export const runtime = "edge";
 
