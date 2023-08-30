@@ -1,4 +1,4 @@
-import Chat from "@/app/(ai-apps)/chatbot/Chat";
+import Chat from "@/app/(ai-apps)/chatbot/chat";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {

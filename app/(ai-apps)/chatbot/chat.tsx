@@ -4,7 +4,8 @@ import { Icons } from "@/components/icons";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import useAutosizeTextarea from "@/lib/hooks/useAutosizeTextarea";
-import { useChat } from "ai/react";
+import { useLocalStorage } from "@mantine/hooks";
+import { Message, useChat } from "ai/react";
 import { useRef } from "react";
 
 const ChatAvatar = ({ type = "user" }: { type: string }) => {
@@ -27,6 +28,11 @@ const ChatAvatar = ({ type = "user" }: { type: string }) => {
 };
 
 const Chat = () => {
+  const [conversation, setConversation] = useLocalStorage<Message[]>({
+    key: "conversation",
+    defaultValue: [],
+  });
+
   const {
     messages,
     input,
@@ -38,9 +44,16 @@ const Chat = () => {
     reload,
   } = useChat({
     api: "/api/chat",
+    initialMessages: conversation,
+    onResponse: (res) => console.log(res),
+    onFinish: () =>
+      setMessages(((prev: any) => setConversation([...prev])) as any),
   });
 
-  
+  const clearMessages = () => {
+    setConversation([]);
+    setMessages([]);
+  };
 
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   useAutosizeTextarea(textareaRef.current, input);
@@ -53,8 +66,6 @@ const Chat = () => {
       handleSubmit(e as any);
     }
   };
-
-  const clearMessages = () => setMessages([]);
 
   const hasMessages = messages.length > 0;
 
@@ -103,7 +114,7 @@ const Chat = () => {
               onClick={stop}
               size="sm"
               variant="outline"
-              className="bg-background absolute -top-5"
+              className="absolute -top-5 bg-background"
             >
               <Icons.stop width={14} height={14} className="mr-2" />
               Stop Generating
@@ -113,7 +124,7 @@ const Chat = () => {
               onClick={reload as () => void}
               size="sm"
               variant="outline"
-              className="bg-background absolute -top-5"
+              className="absolute -top-5 bg-background"
             >
               <Icons.reload width={14} height={14} className="mr-2" />
               Regenerate response
