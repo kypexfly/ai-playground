@@ -40,6 +40,8 @@ const Chat = () => {
     api: "/api/chat",
   });
 
+  
+
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   useAutosizeTextarea(textareaRef.current, input);
 
@@ -53,12 +55,13 @@ const Chat = () => {
   };
 
   const clearMessages = () => setMessages([]);
+
   const hasMessages = messages.length > 0;
 
   return (
     <div className="flex min-h-[calc(100vh-4rem)] flex-col items-center">
       {hasMessages && (
-        <div className="sticky top-0 flex w-full justify-center bg-secondary/25">
+        <div className="sticky top-0 flex w-full justify-center bg-popover">
           <Button onClick={clearMessages} size="sm" variant="ghost">
             <Icons.delete width={14} height={14} className="mr-2" />
             Delete conversation
@@ -66,7 +69,7 @@ const Chat = () => {
         </div>
       )}
 
-      <div className="w-full max-w-2xl space-y-3 p-4 pb-20 sm:px-4 sm:pt-8">
+      <div className="w-full max-w-2xl space-y-3 p-4 pb-28 sm:px-4 sm:pt-8">
         {!hasMessages ? (
           <div className="space-y-4 py-16 text-center">
             <h2 className="text-2xl">Welcome to the AI Chatbox.</h2>
@@ -82,7 +85,7 @@ const Chat = () => {
               return (
                 <div key={msg.id} className="flex items-start gap-3 py-4">
                   <ChatAvatar type={msg.role} />
-                  <div className="flex-1 pl-4">{msg.content}</div>
+                  <div className="flex-1 pl-4 leading-8">{msg.content}</div>
                 </div>
               );
             })}
@@ -100,7 +103,7 @@ const Chat = () => {
               onClick={stop}
               size="sm"
               variant="outline"
-              className="absolute -top-5"
+              className="bg-background absolute -top-5"
             >
               <Icons.stop width={14} height={14} className="mr-2" />
               Stop Generating
@@ -109,8 +112,8 @@ const Chat = () => {
             <Button
               onClick={reload as () => void}
               size="sm"
-              variant="ghost"
-              className="absolute -top-5"
+              variant="outline"
+              className="bg-background absolute -top-5"
             >
               <Icons.reload width={14} height={14} className="mr-2" />
               Regenerate response
