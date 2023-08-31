@@ -3,10 +3,10 @@
 import { Icons } from "@/components/icons";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
-import useAutosizeTextarea from "@/lib/hooks/useAutosizeTextarea";
-import { useLocalStorage } from "@mantine/hooks";
-import { Message, useChat } from "ai/react";
-import { useRef } from "react";
+import { useAutosizeTextarea } from "@/lib/hooks/use-autosize-textarea";
+import { useChat } from "ai/react";
+import { useRef, useState } from "react";
+import ApiKeyDialog from "./api-key-dialog";
 
 const ChatAvatar = ({ type = "user" }: { type: string }) => {
   const isUser = type === "user";
@@ -28,10 +28,7 @@ const ChatAvatar = ({ type = "user" }: { type: string }) => {
 };
 
 const Chat = () => {
-  const [conversation, setConversation] = useLocalStorage<Message[]>({
-    key: "conversation",
-    defaultValue: [],
-  });
+  const [apiKey, setApiKey] = useState("");
 
   const {
     messages,
@@ -43,15 +40,13 @@ const Chat = () => {
     handleSubmit,
     reload,
   } = useChat({
-    api: "/api/chat",
-    initialMessages: conversation,
-    onResponse: (res) => console.log(res),
-    onFinish: () =>
-      setMessages(((prev: any) => setConversation([...prev])) as any),
+    api: "/api/chatbot",
+    body: {
+      apiKey,
+    },
   });
 
   const clearMessages = () => {
-    setConversation([]);
     setMessages([]);
   };
 
@@ -59,7 +54,7 @@ const Chat = () => {
   useAutosizeTextarea(textareaRef.current, input);
 
   const endElement = useRef<HTMLDivElement>(null);
-  const scrollToEnd = () => textareaRef.current?.focus();
+  const scrollToEnd = () => endElement.current?.scrollIntoView();
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === "Enter" && !e.shiftKey) {
@@ -84,11 +79,9 @@ const Chat = () => {
         {!hasMessages ? (
           <div className="space-y-4 py-16 text-center">
             <h2 className="text-2xl">Welcome to the AI Chatbox.</h2>
-            <p>The AI will try to answer your questions.</p>
+            <p>The AI will answer your questions. Say something!</p>
 
-            <Button size="lg" onClick={scrollToEnd}>
-              Get started!
-            </Button>
+            <ApiKeyDialog apiKey={apiKey} setApiKey={setApiKey} />
           </div>
         ) : (
           <>

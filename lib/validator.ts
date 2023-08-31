@@ -5,3 +5,10 @@ export const InputValidator = z.object({
 });
 
 export type InputRequest = z.infer<typeof InputValidator>;
+
+export const InputChatbotValidator = z.object({
+  messages: z.any(),
+  apiKey: z.string().min(1, { message: "API Key is required" }),
+});
+
+export type InputChatbotRequest = z.infer<typeof InputChatbotValidator>;

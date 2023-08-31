@@ -2,9 +2,9 @@ import { siteConfig } from "@/config/site";
 import Link from "next/link";
 import { Icons } from "../icons";
 import { Button } from "../ui/button";
+import ApiKeyDialog from "../../app/(ai-apps)/chatbot/api-key-dialog";
 import AppsMenu from "./apps-menu";
 import AppsMobile from "./apps-mobile";
-import ApiSettings from "./settings";
 
 const SiteHeader = () => {
   return (
@@ -33,17 +33,9 @@ const SiteHeader = () => {
           </nav>
         </div>
 
-        <div>
-          <ApiSettings />
-
-          <Button
-            variant="ghost"
-            className="p-2"
-            aria-label="Site configuration"
-          >
-            <Icons.settings />
-          </Button>
-        </div>
+        <Button variant="ghost" className="p-2" aria-label="Site configuration">
+          <Icons.settings />
+        </Button>
       </div>
     </header>
   );

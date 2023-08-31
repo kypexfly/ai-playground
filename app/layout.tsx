@@ -1,4 +1,5 @@
 import SiteHeader from "@/components/site-header";
+import { Toaster } from "@/components/ui/toaster";
 import { siteConfig } from "@/config/site";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
@@ -27,6 +28,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <SiteHeader />
         {children}
+        <Toaster />
       </body>
     </html>
   );
