@@ -1,5 +1,6 @@
 "use client";
 
+import { Button } from "@/components/ui/button";
 import { PDFPage } from "@/lib/types";
 import { useState } from "react";
 import { Document, Page, pdfjs } from "react-pdf";
@@ -74,6 +75,20 @@ const AskPDF = () => {
   const [numPages, setNumPages] = useState(null);
   const [pageNumber, setPageNumber] = useState(1);
 
+  const handlePrevPage = () => {
+    if (pageNumber <= 1) {
+      return;
+    }
+    setPageNumber(pageNumber - 1);
+  };
+
+  const handleNextPage = () => {
+    if (pageNumber >= numPages!) {
+      return;
+    }
+    setPageNumber(pageNumber + 1);
+  };
+
   const uploadFile = async (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files?.length) {
       return;
@@ -88,7 +103,8 @@ const AskPDF = () => {
 
   async function onDocumentLoadSuccess(document: any) {
     setNumPages(document.numPages);
-    const value = await processDocument(document);
+    // TODO: uncomment the line to upload the data
+    // const value = await processDocument(document);
   }
 
   const onDocumentLoadError = () => {};
@@ -103,18 +119,33 @@ const AskPDF = () => {
       />
 
       {pdfFile && (
-        <Document
-          file={pdfFile}
-          onLoadError={onDocumentLoadError}
-          onLoadSuccess={onDocumentLoadSuccess}
-          className="mx-auto"
-        >
-          <Page
-            pageNumber={pageNumber}
-            renderAnnotationLayer={false}
-            renderTextLayer={false}
-          />
-        </Document>
+        <div className="max-w-2xl">
+          <Document
+            file={pdfFile}
+            onLoadError={onDocumentLoadError}
+            onLoadSuccess={onDocumentLoadSuccess}
+            className="mx-auto"
+          >
+            <Page
+              pageNumber={pageNumber}
+              renderAnnotationLayer={false}
+              renderTextLayer={false}
+            />
+          </Document>
+          <div className="mt-2 flex items-center justify-between border-2 bg-secondary p-2">
+            <Button onClick={handlePrevPage} disabled={pageNumber <= 1}>
+              Prev
+            </Button>
+
+            <div>
+              Page {pageNumber} of {numPages}
+            </div>
+
+            <Button onClick={handleNextPage} disabled={pageNumber >= numPages!}>
+              Next
+            </Button>
+          </div>
+        </div>
       )}
     </div>
   );

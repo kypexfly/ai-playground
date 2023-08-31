@@ -15,6 +15,32 @@ const storePath = (chatId: string) => {
   return path.join(tmpdir(), "ai-playground", "ask-pdf", chatId);
 };
 
+function getHoursDiff(a: Date, b: Date): number {
+  const diffInMilliseconds = a.getTime() - b.getTime();
+  const diffInHours = diffInMilliseconds / (1000 * 60 * 60);
+
+  return diffInHours;
+}
+
+export async function removeOutdatedChats() {
+  const ttlHours = 24;
+  const now = new Date();
+
+  const storageDir = path.join(tmpdir(), "ai-playground", "chat-pdf");
+  const files = await fs.readdir(storageDir, { withFileTypes: true });
+
+  for (const file of files) {
+    if (file.isDirectory()) {
+      const fullPath = path.join(storageDir, file.name);
+      const stats = await fs.stat(fullPath);
+
+      if (getHoursDiff(now, stats.birthtime) > ttlHours) {
+        await fs.rm(fullPath, { recursive: true, force: true });
+      }
+    }
+  }
+}
+
 const createStoreDir = async (chatId: string) => {
   const path = storePath(chatId);
   await fs.mkdir(path, { recursive: true });

@@ -7,6 +7,7 @@ import { useAutosizeTextarea } from "@/lib/hooks/use-autosize-textarea";
 import { useChat } from "ai/react";
 import { useRef, useState } from "react";
 import ApiKeyDialog from "./api-key-dialog";
+import { toast, useToast } from "@/lib/hooks/use-toast";
 
 const ChatAvatar = ({ type = "user" }: { type: string }) => {
   const isUser = type === "user";
@@ -30,6 +31,8 @@ const ChatAvatar = ({ type = "user" }: { type: string }) => {
 const Chat = () => {
   const [apiKey, setApiKey] = useState("");
 
+  const { toast } = useToast();
+
   const {
     messages,
     input,
@@ -43,6 +46,13 @@ const Chat = () => {
     api: "/api/chatbot",
     body: {
       apiKey,
+    },
+    onError: () => {
+      toast({
+        title: "Unexpected Error",
+        description: "Something went wrong 🥺. Try again later.",
+        variant: "destructive",
+      });
     },
   });
 
@@ -97,10 +107,10 @@ const Chat = () => {
         )}
       </div>
 
-      <div className="fixed bottom-0 w-full bg-gradient-to-t from-black to-transparent">
+      <div className="fixed bottom-0 w-full bg-gradient-to-t from-zinc-300 to-transparent dark:from-black">
         <form
           onSubmit={handleSubmit}
-          className="mx-auto my-6 flex max-w-2xl justify-center gap-2"
+          className="mx-auto my-6 flex w-full max-w-2xl justify-center gap-2 rounded-lg border border-input bg-background px-3 py-2"
         >
           {isLoading && hasMessages ? (
             <Button
@@ -131,7 +141,7 @@ const Chat = () => {
             value={input}
             onChange={handleInputChange}
             onKeyDown={handleKeyDown}
-            className="max-h-[30vh] resize-none overflow-hidden rounded-lg bg-background focus-visible:ring-2"
+            className="max-h-[30vh] resize-none overflow-hidden rounded-lg border-0 bg-background shadow-none focus-visible:ring-0"
           />
 
           <Button
