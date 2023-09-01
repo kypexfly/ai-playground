@@ -1,6 +1,6 @@
 import { apps } from "@/config/apps";
 import { Metadata } from "next";
-import AskPDF from "./ask-pdf";
+import AskPDF from "./AskPDF";
 
 const app = apps.find((element) => element.href === "/ask-pdf");
 

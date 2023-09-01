@@ -7,7 +7,7 @@ import { useAutosizeTextarea } from "@/lib/hooks/use-autosize-textarea";
 import { useChat } from "ai/react";
 import { useRef, useState } from "react";
 import ApiKeyDialog from "./api-key-dialog";
-import { toast, useToast } from "@/lib/hooks/use-toast";
+import { useToast } from "@/lib/hooks/use-toast";
 
 const ChatAvatar = ({ type = "user" }: { type: string }) => {
   const isUser = type === "user";

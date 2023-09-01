@@ -103,8 +103,7 @@ const AskPDF = () => {
 
   async function onDocumentLoadSuccess(document: any) {
     setNumPages(document.numPages);
-    // TODO: uncomment the line to upload the data
-    // const value = await processDocument(document);
+    const value = await processDocument(document);
   }
 
   const onDocumentLoadError = () => {};
