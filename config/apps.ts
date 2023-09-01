@@ -1,8 +1,9 @@
-type AppType = {
+export type AppType = {
   href: string;
   title: string;
   description: string;
   tags: string[];
+  src?: string; // remove optional
   new?: boolean;
   featured?: boolean;
 };
@@ -10,10 +11,11 @@ type AppType = {
 export const apps: AppType[] = [
   {
     href: "/chatbot",
-    title: "ChatGPT",
+    title: "Chatbot",
     description:
       "Engage in a conversation with ChatGPT, OpenAI's renowned chatbot.",
     tags: ["OpenAI", "ChatGPT", "LLM"],
+    src: "/chatbot.png",
   },
   {
     href: "/ask-pdf",
@@ -21,6 +23,7 @@ export const apps: AppType[] = [
     description:
       "Interact with your PDF documents, ask questions, and extract insights.",
     tags: ["OpenAI", "ChatGPT", "LLM"],
+    src: "/ask-pdf.png",
   },
   {
     href: "/chat-youtube",

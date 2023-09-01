@@ -8,31 +8,49 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { apps } from "@/config/apps";
+import { type AppType, apps } from "@/config/apps";
 import Link from "next/link";
+
+const AppCard = ({ title, description, href, tags }: AppType) => {
+  return (
+    <Link key={title} href={href}>
+      <Card className="group h-full border-2 border-transparent py-8 hover:border-primary">
+        <CardHeader>
+          <CardTitle className="text-xl group-hover:text-primary">
+            {title}
+          </CardTitle>
+        </CardHeader>
+        <CardContent>{description}</CardContent>
+        <CardFooter className="flex flex-wrap gap-3">
+          {tags.map((tag) => (
+            <Badge variant="secondary" key={tag}>
+              {tag}
+            </Badge>
+          ))}
+        </CardFooter>
+      </Card>
+    </Link>
+  );
+};
 
 export default function Home() {
   return (
     <main>
-      <section className="space-y-6 pb-8 pt-6 md:pb-12 md:pt-10 lg:py-32">
-        <div className="container flex max-w-[64rem] flex-col items-center gap-4 text-center">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/ai-playground.svg"
-            className="animate-spin-slow"
-            width={128}
-            height={128}
-            alt="AI Playground's Logo"
-          />
-          <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl">
+      <section>
+        <div className="container relative flex min-h-[calc(100vh-4rem)] max-w-[64rem] flex-col items-center justify-center gap-4 overflow-hidden text-center">
+          <div className="absolute -z-10 hidden h-[16rem] w-[16rem] -translate-y-1/2 animate-pulse cursor-none rounded-full bg-primary opacity-25 blur-3xl dark:block" />
+
+          <h1 className="text-6xl font-bold sm:text-7xl md:text-8xl">
             <span className="text-primary">AI</span> Playground
           </h1>
-          <p className="max-w-[42rem] leading-normal text-muted-foreground sm:text-xl sm:leading-8">
-            Experiment with different apps powered by AI and LLMs.
+
+          <p className="mb-10 mt-6 max-w-[42rem] leading-normal text-muted-foreground sm:text-xl sm:leading-8">
+            Welcome to our AI playground, where you can discover a variety of
+            innovative applications powered by cutting-edge AI technologies.
           </p>
           <div className="flex flex-wrap justify-center gap-3">
             <a href="#apps" className={buttonVariants({ size: "lg" })}>
-              <Icons.start className="mr-2 h-4 w-4" /> Let&apos;s start
+              <Icons.start className="mr-2 h-4 w-4" /> Get Started
             </a>
             <a
               href="https://github.com/kypexfly/ai-playground"
@@ -46,32 +64,15 @@ export default function Home() {
         </div>
       </section>
 
-      <section
-        id="apps"
-        className="min-h-screen bg-muted pb-8 pt-6 md:pb-12 md:pt-10 lg:py-32"
-      >
+      <section id="apps" className="bg-muted py-20">
         <div className="container flex flex-col gap-4">
-          <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl">Apps</h1>
+          <h1 className="text-5xl font-semibold sm:text-6xl md:text-7xl">
+            Apps
+          </h1>
 
           <div className="grid grid-cols-1 gap-4 py-4 md:grid-cols-2 md:py-8 lg:grid-cols-3 lg:py-16">
             {apps.map((app) => (
-              <Link key={app.title} href={app.href}>
-                <Card className="group h-full border-2 border-transparent py-8 transition-colors hover:border-primary">
-                  <CardHeader>
-                    <CardTitle className="text-xl group-hover:text-primary">
-                      {app.title}
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>{app.description}</CardContent>
-                  <CardFooter className="space-x-3">
-                    {app.tags.map((tag) => (
-                      <Badge variant="secondary" key={tag}>
-                        {tag}
-                      </Badge>
-                    ))}
-                  </CardFooter>
-                </Card>
-              </Link>
+              <AppCard {...app} key={app.title} />
             ))}
           </div>
         </div>
