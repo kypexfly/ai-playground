@@ -1,65 +1,65 @@
 "use client";
 
-import { Dialog, DialogTrigger } from "@radix-ui/react-dialog";
-import { Button } from "../ui/button";
+import { useTheme } from "next-themes";
+import { useEffect, useState } from "react";
 import { Icons } from "../icons";
+import { Button } from "../ui/button";
 import {
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-} from "../ui/dialog";
-import { Label } from "../ui/label";
-import { Input } from "../ui/input";
+  DropdownMenu,
+  DropdownMenuCheckboxItem,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "../ui/dropdown-menu";
+import { Switch } from "../ui/switch";
 
-const Settings = () => {
+export const Settings = () => {
+  const { theme, setTheme } = useTheme();
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, [isMounted]);
+
+  if (!isMounted)
+    return (
+      <Button variant="ghost" className="p-2" aria-label="Site settings">
+        <Icons.settings />
+      </Button>
+    );
+
   return (
-    <Dialog>
-      <DialogTrigger asChild>
-        <Button variant="ghost" className="p-2">
-          <Icons.key />
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <Button variant="ghost" className="p-2" aria-label="Site settings">
+          <Icons.settings />
         </Button>
-      </DialogTrigger>
+      </DropdownMenuTrigger>
 
-      <DialogContent className="sm:max-w-[425px]">
-        <DialogHeader>
-          <DialogTitle>Settings</DialogTitle>
-          <DialogDescription>
-            Setup your API Keys to start using the apps.
-          </DialogDescription>
-        </DialogHeader>
-        <div className="grid gap-4 py-4">
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="name" className="text-right">
-              OpenAI
-            </Label>
-            <Input
-              id="openai"
-              placeholder="your API key"
-              className="col-span-3"
-            />
-          </div>
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="username" className="text-right">
-              HuggingFace
-            </Label>
-            <Input
-              id="huggingface"
-              placeholder="your API key"
-              className="col-span-3"
-            />
-          </div>
-        </div>
-        <DialogFooter>
-          <Button type="button" variant="destructive">
-            Delete keys
-          </Button>
-          <Button type="submit">Save changes</Button>
-        </DialogFooter>
-      </DialogContent>
-    </Dialog>
+      <DropdownMenuContent>
+        <DropdownMenuLabel>Site Configuration</DropdownMenuLabel>
+
+        <DropdownMenuSeparator />
+        <DropdownMenuCheckboxItem
+          className="justify-between"
+          onCheckedChange={() => setTheme(theme === "dark" ? "light" : "dark")}
+        >
+          Theme
+          <Switch checked={theme === "dark"} />
+        </DropdownMenuCheckboxItem>
+        <DropdownMenuSeparator />
+
+        <DropdownMenuItem>
+          <Icons.github className="mr-2 h-4 w-4" />
+          <span>GitHub</span>
+        </DropdownMenuItem>
+        <DropdownMenuItem>
+          <Icons.globe className="mr-2 h-4 w-4" />
+          <span>Language</span>
+        </DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
   );
 };
-
-export default Settings;

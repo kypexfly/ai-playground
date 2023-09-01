@@ -2,6 +2,7 @@ import {
   Bot,
   ChevronDown,
   Github,
+  Globe,
   Key,
   LayoutGrid,
   ListStart,
@@ -11,10 +12,15 @@ import {
   RefreshCcw,
   Send,
   Settings,
+  StopCircle,
+  Trash,
   User,
 } from "lucide-react";
 
 export const Icons = {
+  globe: Globe,
+  stop: StopCircle,
+  delete: Trash,
   reload: RefreshCcw,
   user: User,
   bot: Bot,

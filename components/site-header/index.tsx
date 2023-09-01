@@ -1,17 +1,14 @@
 import { siteConfig } from "@/config/site";
 import Link from "next/link";
-import { Icons } from "../icons";
-import { Button } from "../ui/button";
 import AppsMenu from "./apps-menu";
-import Settings from "./settings";
 import AppsMobile from "./apps-mobile";
+import { Settings } from "./settings";
 
 const SiteHeader = () => {
   return (
     <header className="h-16">
       <div className="container flex items-center justify-between px-2 py-4">
         <div className="flex items-center">
-          {/* TODO: Add aria-label for ALL buttons */}
           <AppsMobile />
           <Link
             href="/"
@@ -34,13 +31,7 @@ const SiteHeader = () => {
           </nav>
         </div>
 
-        <div>
-          <Settings />
-
-          <Button variant="ghost" className="p-2">
-            <Icons.settings />
-          </Button>
-        </div>
+        <Settings />
       </div>
     </header>
   );
