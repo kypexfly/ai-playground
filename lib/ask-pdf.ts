@@ -26,7 +26,7 @@ export async function removeOutdatedChats() {
   const ttlHours = 24;
   const now = new Date();
 
-  const storageDir = path.join(tmpdir(), "ai-playground", "chat-pdf");
+  const storageDir = path.join(tmpdir(), "ai-playground", "ask-pdf");
   const files = await fs.readdir(storageDir, { withFileTypes: true });
 
   for (const file of files) {
