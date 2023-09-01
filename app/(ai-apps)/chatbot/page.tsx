@@ -1,4 +1,4 @@
-import Chat from "@/app/(ai-apps)/chatbot/chat";
+import Chat from "@/app/(ai-apps)/chatbot/Chat";
 import { apps } from "@/config/apps";
 import { Metadata } from "next";
 
