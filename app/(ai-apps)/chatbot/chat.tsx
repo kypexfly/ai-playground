@@ -99,7 +99,7 @@ const Chat = () => {
               return (
                 <div key={msg.id} className="flex items-start gap-3 py-4">
                   <ChatAvatar type={msg.role} />
-                  <div className="flex-1 pl-4 leading-8">{msg.content}</div>
+                  <div className="flex-1 pl-4">{msg.content}</div>
                 </div>
               );
             })}

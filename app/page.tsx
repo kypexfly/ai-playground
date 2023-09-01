@@ -14,7 +14,7 @@ import Link from "next/link";
 const AppCard = ({ title, description, href, tags }: AppType) => {
   return (
     <Link key={title} href={href}>
-      <Card className="group h-full border-2 border-transparent py-8 hover:border-primary">
+      <Card className="group h-full border-4 border-transparent bg-secondary/25 py-8 shadow-2xl shadow-transparent transition-shadow hover:border-primary hover:shadow-primary/50">
         <CardHeader>
           <CardTitle className="text-xl group-hover:text-primary">
             {title}
@@ -48,7 +48,7 @@ export default function Home() {
             Welcome to our AI playground, where you can discover a variety of
             innovative applications powered by cutting-edge AI technologies.
           </p>
-          <div className="flex flex-wrap justify-center gap-3">
+          <div className="flex w-full flex-col flex-wrap justify-center gap-6 sm:flex-row sm:gap-3">
             <a href="#apps" className={buttonVariants({ size: "lg" })}>
               <Icons.start className="mr-2 h-4 w-4" /> Get Started
             </a>
@@ -64,7 +64,10 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="apps" className="bg-muted py-20">
+      <section
+        id="apps"
+        className="bg-gradient-to-b from-background via-background to-secondary py-20 dark:to-black"
+      >
         <div className="container flex flex-col gap-4">
           <h1 className="text-5xl font-semibold sm:text-6xl md:text-7xl">
             Apps
