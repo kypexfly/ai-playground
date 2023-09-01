@@ -46,7 +46,7 @@ export const Settings = () => {
           className="justify-between"
           onCheckedChange={() => setTheme(theme === "dark" ? "light" : "dark")}
         >
-          Theme
+          Dark mode
           <Switch checked={theme === "dark"} />
         </DropdownMenuCheckboxItem>
         <DropdownMenuSeparator />
